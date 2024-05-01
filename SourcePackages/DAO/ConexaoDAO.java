@@ -5,11 +5,13 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+//Classe de conexão para acessar os objetos (Data Access Object)
 public class ConexaoDAO 
 {
   private Connection con = null;
   private Statement sqlmgr = null;
 
+//Método para a abertura do banco de dados
   public Connection OpenDatabase()
   {
     try 
