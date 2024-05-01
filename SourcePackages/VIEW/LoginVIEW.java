@@ -1,10 +1,8 @@
-import java.util.Scanner;
+package VIEW;
 
-import Source.usuarioPessoaDTO;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import DAO.UsuarioPessoaDAO;
-
-
+import java.util.Scanner;
 
 public class LoginVIEW
 {
@@ -30,7 +28,7 @@ public class LoginVIEW
       objUsuarioPessoaDto.setNome_usuarioPessoa(nome_usuarioPessoa);
       objUsuarioPessoaDto.setSenha_usuarioPessoa(senha_usuarioPessoa); 
       
-      UsuarioDAO objUsuarioPessoaDao = new UsuarioPessoaDAO();
+      DAOConnection objUsuarioPessoaDao = new UsuarioPessoaDAO();
       ResultSet rsUsuarioDao = objUsuarioPessoaDao.autenticacaoUsuario(objUsuarioPessoaDto);
 
       if(rsUsuarioDao.next())
@@ -41,13 +39,13 @@ public class LoginVIEW
       else
       {
         //Enviar mensagem de erro
-        JOptionPane.showMessageDialog(null,"Usuario ou senha inválida!")
+        System.out.println("Usuario ou senha inválida!");
       }
 
     }
     catch(SQLException erro)
     {
-      JOptionPane.showMessageDialog(null,"loginVIEW: " + erro);
+      System.out.println("loginVIEW: " + erro);
     }
     
   }

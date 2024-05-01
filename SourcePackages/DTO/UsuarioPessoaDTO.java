@@ -1,5 +1,5 @@
-
-
+package DTO;
+//Criação de todos os getters e setters. (Data Transfer Object)
 public class UsuarioPessoaDTO 
 {
   private int id_usuarioPessoa;

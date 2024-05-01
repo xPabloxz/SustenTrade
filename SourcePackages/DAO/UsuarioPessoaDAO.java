@@ -1,3 +1,4 @@
+package DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ public class UsuarioPessoaDAO
   public ResultSet autenticacaoUsuario(UsuarioPessoaDTO objUsuarioPessoaDto)
   {
     //Estava dando erro aqui.
-    ConexaoDAO con = new ConexaoDAO();
+    DAOConnection con = new DAOConnection();
     con.OpenDatabase();
 
     try
