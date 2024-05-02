@@ -13,31 +13,34 @@ public class LoginVIEW
     public static void main ( String[] args)
   {
     Scanner sc = new Scanner(System.in);
-    String nome_usuarioPessoa, senha_usuarioPessoa, txtNome_usuarioPessoa, txtSenha_usuarioPessoa, btnEntrarSistema;
+    String nome_pessoa, senha_pessoa;
+
+    //Instância necessária para pegar o método de autenticação do usuário.
+    UsuarioPessoaDAO objUsuarioPessoaDao = new UsuarioPessoaDAO();
+
+    //Instância necessária para usar como parâmetro no método de autenticação do usuário.
+    UsuarioPessoaDTO objUsuarioPessoaDto = new UsuarioPessoaDTO();
+
+
+    System.out.println("Qual o nome do usuário?");
+    nome_pessoa = sc.nextLine();
+
+    System.out.println("Qual a senha do usuário?");
+    senha_pessoa = sc.nextLine();
+
+    objUsuarioPessoaDto.setNome_pessoa(nome_pessoa);
+    objUsuarioPessoaDto.setSenha_pessoa(senha_pessoa); 
 
     try
     {
-      System.out.println("Qual o nome do usuário?");
-      txtNome_usuarioPessoa = sc.nextLine();
-      nome_usuarioPessoa = txtNome_usuarioPessoa.getText();
-
-      System.out.println("Qual a senha do usuário?");
-      txtSenha_usuarioPessoa = sc.nextLine();
-      senha_usuarioPessoa = txtSenha_usuarioPessoa.getText();
-
-      UsuarioPessoaDTO objUsuarioPessoaDto = new UsuarioPessoaDTO();
-
-
-      objUsuarioPessoaDto.setNome_usuarioPessoa(nome_usuarioPessoa);
-      objUsuarioPessoaDto.setSenha_usuarioPessoa(senha_usuarioPessoa); 
-      
-      UsuarioPessoaDAO objUsuarioPessoaDao = new UsuarioPessoaDAO();
+     
       ResultSet rsUsuarioDao = objUsuarioPessoaDao.autenticacaoUsuario(objUsuarioPessoaDto);
 
+      //Caso tenha uma nova linha do sql, ou seja um resultado válido, ele dá a mensagem de seja bem vindo.
       if(rsUsuarioDao.next())
       {
         //Chamar tela que quero abrir
-        System.out.printf("Seja bem vindo, %s!!!!! ",objUsuarioPessoaDto.getNome_usuarioPessoa());
+        System.out.printf("Seja bem vindo(a), %s!!!!! ",objUsuarioPessoaDto.getNome_pessoa());
       }
       else
       {
@@ -48,9 +51,10 @@ public class LoginVIEW
     }
     catch(SQLException erro)
     {
-      System.out.println("loginVIEW: " + erro);
+      System.out.println("LoginVIEW Error! Message: " + erro);
     }
-    
+
+    sc.close();
   }
   
 }

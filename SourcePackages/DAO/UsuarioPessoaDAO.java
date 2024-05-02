@@ -5,34 +5,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import DTO.UsuarioPessoaDTO;
 
-
+//Classe do Usuario. Acesso do objeto ao usuário.
 public class UsuarioPessoaDAO 
 {
   Connection con;
 
+  //Método de autenticação do usuário através do objUsuarioPessoaDto que recebe os gets and sets da tela de usuario.
   public ResultSet autenticacaoUsuario(UsuarioPessoaDTO objUsuarioPessoaDto)
   {
-    //Estava dando erro aqui.
-    DAOConnection con = new DAOConnection();
-    con.OpenDatabase();
-    PreparedStatement pstm = null;
-
+    //Antes de fazer qualquer entrada sql é necessário a conexão como está sendo feita aqui.
+    con = new DAOConnection().OpenDatabase();
+    
     try
     {
-      PreparedStatement mystm;
+       String sql = "select * from pessoas where nome = ? and senha = ?";
+       
+       PreparedStatement pstm = con.prepareStatement(sql);
 
-       String sql = "select * from usuarioPessoa where nome_usuarioPessoa = ? and senha_usuarioPessoa = ?";
-       mystm = ((Connection) con).prepareStatement(sql);
-       mystm.setString(1,objUsuarioPessoaDto.getNome_usuarioPessoa());
-       mystm.setString(2,objUsuarioPessoaDto.getSenha_usuarioPessoa());
+      // No 1º ponto de interrogação ele pega o valor da variável nome e no 2º o valor da variável senha.
+       pstm.setString(1,objUsuarioPessoaDto.getNome_pessoa());
+       pstm.setString(2,objUsuarioPessoaDto.getSenha_pessoa());
 
+       /**ResultSet promove métodos getters, ou seja, guarda resultados provenientes de uma query SQL através de um preparedStatement. 
+          Aqui na variável rs do ResultSet é guardado a execução do método executeQuery que pede para fazer todo o processo com o pstm acima**/
       ResultSet rs = pstm.executeQuery();
-       return rs;
 
+       return rs;
     }
     catch(SQLException erro)
     {
-      System.out.println("UsuarioDAO: " + erro);
+      System.out.println("UsuarioDAO Error! Message: " + erro);
       return null;
     }
 

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-//Classe de conexão para acessar os objetos (Data Access Object)
+//Classe de conexão para acessar os objetos (Data Access Object), Acesso do objeto a conexão.
 public class DAOConnection 
 {
   //variável do tipo connection
@@ -29,13 +29,13 @@ public class DAOConnection
     } 
     catch (SQLException error)
     {
-      System.out.println("DAOConnection error" + error.getMessage());
+      System.out.println("DAOConnection error!  Message: " + error.getMessage());
     }
 
     return con;
   }
 
-  // retorna o total de registros afetados, caso dê erro gera o -1
+  // Método para mexer no banco de dados retorna o total de registros afetados, caso dê erro gera o -1
   public int ExecuteQuery(String sql)
   {
     try 
