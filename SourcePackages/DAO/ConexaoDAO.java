@@ -23,7 +23,7 @@ public class ConexaoDAO
       /**Driver de conexão(jdbc:mysql://) + Local do banco de dados e porta(localhost:3306)
         + banco de dados(/sustentrade) + usuário(?user=root) e senha em branco(&password=)
       **/
-      String url = "jdbc:mysql://localhost:3306/sustentrade?user=root&password=" ;
+      String url = "jdbc:mysql://localhost:3306/sustenTrade?user=root&password=" ;
       con = DriverManager.getConnection(url);
       sqlmgr = con.createStatement();
     } 
