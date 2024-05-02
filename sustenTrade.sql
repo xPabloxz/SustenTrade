@@ -1,9 +1,9 @@
-CREATE DATABASE sustenTrade
+CREATE DATABASE sustentrade
 DEFAULT CHARACTER SET utf8
 DEFAULT COLLATE utf8_general_ci;
-USE sustenTrade;
+USE sustentrade;
 
-CREATE TABLE usuarios (
+CREATE TABLE pessoas (
     id                           INT AUTO_INCREMENT PRIMARY KEY,
     nome                         VARCHAR(100) NOT NULL,
     sexo                         ENUM('F','M'),
@@ -18,8 +18,8 @@ CREATE TABLE empresas (
     email                        VARCHAR(100) NOT NULL UNIQUE, -- Add email 
     cnpj                         VARCHAR(14),
     descricao                    TEXT,
-    usuario_id                   INT,
-    FOREIGN KEY (usuario_id)     REFERENCES usuarios(id)
+    pessoa_id                   INT,
+    FOREIGN KEY (pessoa_id)     REFERENCES pessoas(id)
 );
 
 
@@ -31,8 +31,8 @@ CREATE TABLE materiais (
     estado                       ENUM('novo', 'usado') NOT NULL,
     tempo_uso                    INT, -- Tempo de uso em meses
     disponivel                   BOOLEAN NOT NULL DEFAULT TRUE, -- Indica se o material está disponível para transação
-    usuario_id                   INT,
-    FOREIGN KEY (usuario_id)     REFERENCES usuarios(id)
+    pessoa_id                   INT,
+    FOREIGN KEY (pessoa_id)     REFERENCES pessoas(id)
 );
 
 
@@ -41,9 +41,9 @@ CREATE TABLE transacoes (
     material_id                  INT,
     tipo                         ENUM('venda', 'troca', 'doacao') NOT NULL,
     preco                        DECIMAL(10, 2),
-    comprador_id                 INT, -- usuario que comprou/trocou/recebeu a doação
+    comprador_id                 INT, -- pessoa que comprou/trocou/recebeu a doação
     FOREIGN KEY (material_id)    REFERENCES materiais(id),
-    FOREIGN KEY (comprador_id)   REFERENCES usuarios(id)
+    FOREIGN KEY (comprador_id)   REFERENCES pessoas(id)
 );
 
 
@@ -65,7 +65,7 @@ CREATE TABLE pontos_coleta (
 );
 
 
-INSERT INTO usuarios (nome, sexo, dataNascimento, email, senha)
+INSERT INTO pessoas (nome, sexo, dataNascimento, email, senha)
 VALUES 
     ('Maria Eduarda', 'F', '1990-03-15', 'mariaduds@email.com', '5002ef'),
     ('Lucas', 'M', '2004-07-20', 'Lucas@email.com', '1462sd1'),
@@ -74,7 +74,7 @@ VALUES
     ('Laura', 'F', '1988-09-03', 'laura@email.com', 'xy78z');
 
 
-INSERT INTO empresas (nome, cnpj, email, descricao, usuario_id)
+INSERT INTO empresas (nome, cnpj, email, descricao, pessoa_id)
 VALUES 
     ('Coltthing Company', '12345678000190', 'coltthing@email.com', 'Reciclagem de Eletronicos', 1),
     ('Furnture', '67891234000156', 'furniture@email.com', 'Reutilização de plástico', 2),
@@ -83,7 +83,7 @@ VALUES
     ('Cataki', '23456789000134', 'cataki@email.com',  'Reciclagem de eletrônicos', 5);
 
 
-INSERT INTO materiais (nome, tipo, descricao, estado, tempo_uso, usuario_id)
+INSERT INTO materiais (nome, tipo, descricao, estado, tempo_uso, pessoa_id)
 VALUES 
     ('Maquiagem', 'reutilizavel', 'Maquiagem pra adolecentes', 'novo', 3, 1),
     ('Bike', 'reutilizavel', 'simples, nunca quebrou', 'usado', 6, 2),
@@ -118,9 +118,9 @@ VALUES
     ('Ponto de coleta de eletrônicos', 'Avenida das Tecnologias, 1010', 'No shopping Boa Vista'),
     ('Ponto de troca de materiais', 'Av. caxangá, 222', 'Parada do BRT');
 
-SELECT u.nome AS nome_usuario, m.nome AS nome_material                                            -- todos os usuários e seus materiais
-FROM usuarios u
-INNER JOIN materiais m ON u.id = m.usuario_id;
+SELECT u.nome AS nome_pessoa, m.nome AS nome_material                                            -- todos os usuários e seus materiais
+FROM pessoas u
+INNER JOIN materiais m ON u.id = m.pessoa_id;
 
 
 
@@ -136,18 +136,18 @@ INNER JOIN empresas e ON a.empresa_id = e.id;
 
 
 
-SELECT m.nome AS nome_material, u.nome AS nome_usuario, e.nome AS nome_empresa                    -- materiais e seus usuários e empresas
+SELECT m.nome AS nome_material, u.nome AS nome_pessoa, e.nome AS nome_empresa                    -- materiais e seus usuários e empresas
 FROM materiais m
-INNER JOIN usuarios u ON m.usuario_id = u.id
-INNER JOIN empresas e ON u.id = e.usuario_id;
+INNER JOIN pessoas u ON m.pessoa_id = u.id
+INNER JOIN empresas e ON u.id = e.pessoa_id;
 
 
-SELECT u.nome AS nome_usuario, t.tipo AS tipo_transacao                                           -- usuários que realizaram transações de doação:
-FROM usuarios u
+SELECT u.nome AS nome_pessoa, t.tipo AS tipo_transacao                                           -- usuários que realizaram transações de doação:
+FROM pessoas u
 INNER JOIN transacoes t ON u.id = t.comprador_id
 WHERE t.tipo = 'doacao';
 
-SELECT pc.id, pc.nome AS nome_ponto, pc.endereco, pc.pontoDereferencia, u.id AS id_usuario, u.nome AS nome_usuario
+SELECT pc.id, pc.nome AS nome_ponto, pc.endereco, pc.pontoDereferencia, u.id AS id_pessoa, u.nome AS nome_pessoa
 FROM pontos_coleta pc
-CROSS JOIN usuarios u
+CROSS JOIN pessoas u
 WHERE u.nome = 'Matheus';

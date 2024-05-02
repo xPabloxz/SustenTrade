@@ -4,8 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import MODEL.UsuarioPessoa;
-import MODEL.UsuarioEmpresa;
+import MODEL.UsuarioPessoaMODEL;
+import MODEL.EmpresaMODEL;
 
 //Classe do Usuario. Acesso do objeto ao usuário. Os comandos sql acontecem aqui.
 public class UsuarioPessoaDAO 
@@ -13,7 +13,7 @@ public class UsuarioPessoaDAO
   Connection con;
 
   //Método de autenticação do usuário através do objUsuarioPessoaDto que recebe os gets and sets da tela de usuario.
-  public ResultSet autenticacaoUsuario(UsuarioPessoa objUsuarioPessoaDto)
+  public ResultSet autenticacaoUsuario(UsuarioPessoaMODEL objUsuarioPessoaDto)
   {
     //Antes de fazer qualquer entrada sql é necessário a conexão como está sendo feita aqui.
     con = new ConexaoDAO().AbreBd();
