@@ -2,20 +2,24 @@ package CONTROLLER;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import DAO.ConexaoDAO;
 import DAO.PessoaDAO;
 import MODEL.PessoaMODEL;
-import VIEW.LoginVIEW;
 
 //pesquisa,exclusão, alteração, gravação. Conhece o DAO, Model e VIEW. (Controller)
 public class UsuarioController 
 
 {
-  //Instância necessária para pegar o método de autenticação do usuário.
+
+  public void LoginUsuario(String nome_usuario, String senha_usuario)
+  {
+     //Instância necessária para usar como parâmetro no método de autenticação do usuário.
+     PessoaMODEL objPessoaMODEL = new PessoaMODEL();
+
+    //Instância necessária para pegar o método de autenticação do usuário.
     PessoaDAO objPessoaDao = new PessoaDAO();
 
-    //Instância necessária para usar como parâmetro no método de autenticação do usuário.
-    PessoaMODEL objUsuarioPessoa = new PessoaMODEL();
+    objPessoaMODEL.setNome_pessoa(nome_usuario);
+    objPessoaMODEL.setSenha_pessoa(senha_usuario); 
 
     try
     {
@@ -40,5 +44,6 @@ public class UsuarioController
       System.out.println("LoginVIEW Error! Message: " + erro);
     }
 
-    sc.close();
+  }
+  
 }

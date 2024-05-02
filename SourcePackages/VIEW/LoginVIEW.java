@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import MODEL.PessoaMODEL;
+import CONTROLLER.UsuarioController;
 
 //Conhece o DAO. Lugar de alterações(Model)
 public class LoginVIEW
@@ -13,19 +13,22 @@ public class LoginVIEW
     public static void main ( String[] args)
   {
     Scanner sc = new Scanner(System.in);
-    String nome_pessoa, senha_pessoa;
+    String nome_usuario, senha_usuario;
 
-    
-
+    UsuarioController usuario = new UsuarioController();
 
     System.out.println("Qual o nome do usuário?");
-    nome_pessoa = sc.nextLine();
+    nome_usuario = sc.nextLine();
 
     System.out.println("Qual a senha do usuário?");
-    senha_pessoa = sc.nextLine();
+    senha_usuario = sc.nextLine();
 
-    objUsuarioPessoa.setNome_pessoa(nome_pessoa);
-    objUsuarioPessoa.setSenha_pessoa(senha_pessoa); 
+    usuario.LoginUsuario(nome_usuario, senha_usuario);
+
+    sc.close();
+
+
+    
 
     
   }
