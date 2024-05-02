@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import DTO.UsuarioPessoaDTO;
+import DAO.UsuarioPessoaDAO;
+
 public class LoginVIEW
 {
 
@@ -18,7 +21,7 @@ public class LoginVIEW
       txtNome_usuarioPessoa = sc.nextLine();
       nome_usuarioPessoa = txtNome_usuarioPessoa.getText();
 
-      System.out.println("Qual a senha do usuário?")
+      System.out.println("Qual a senha do usuário?");
       txtSenha_usuarioPessoa = sc.nextLine();
       senha_usuarioPessoa = txtSenha_usuarioPessoa.getText();
 
@@ -28,7 +31,7 @@ public class LoginVIEW
       objUsuarioPessoaDto.setNome_usuarioPessoa(nome_usuarioPessoa);
       objUsuarioPessoaDto.setSenha_usuarioPessoa(senha_usuarioPessoa); 
       
-      DAOConnection objUsuarioPessoaDao = new UsuarioPessoaDAO();
+      UsuarioPessoaDAO objUsuarioPessoaDao = new UsuarioPessoaDAO();
       ResultSet rsUsuarioDao = objUsuarioPessoaDao.autenticacaoUsuario(objUsuarioPessoaDto);
 
       if(rsUsuarioDao.next())

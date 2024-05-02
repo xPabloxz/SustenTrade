@@ -10,7 +10,7 @@ public class UsuarioPessoaDTO
     return id_usuarioPessoa;
   }
 
-  public void setID_usuarioPessoa(int id_usuarioPessoa)
+  public void setId_usuarioPessoa(int id_usuarioPessoa)
   {
     this.id_usuarioPessoa = id_usuarioPessoa;
   }
