@@ -3,18 +3,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import DTO.UsuarioPessoaDTO;
 
-//Classe do Usuario. Acesso do objeto ao usuário.
+import MODEL.UsuarioPessoa;
+import MODEL.UsuarioEmpresa;
+
+//Classe do Usuario. Acesso do objeto ao usuário. Os comandos sql acontecem aqui.
 public class UsuarioPessoaDAO 
 {
   Connection con;
 
   //Método de autenticação do usuário através do objUsuarioPessoaDto que recebe os gets and sets da tela de usuario.
-  public ResultSet autenticacaoUsuario(UsuarioPessoaDTO objUsuarioPessoaDto)
+  public ResultSet autenticacaoUsuario(UsuarioPessoa objUsuarioPessoaDto)
   {
     //Antes de fazer qualquer entrada sql é necessário a conexão como está sendo feita aqui.
-    con = new DAOConnection().OpenDatabase();
+    con = new ConexaoDAO().AbreBd();
     
     try
     {
@@ -34,10 +36,14 @@ public class UsuarioPessoaDAO
     }
     catch(SQLException erro)
     {
-      System.out.println("UsuarioDAO Error! Message: " + erro);
+      System.out.println("UsuarioPessoaDAO Error! Message: " + erro);
       return null;
     }
 
-
   }
+
+
+
+
+
 }

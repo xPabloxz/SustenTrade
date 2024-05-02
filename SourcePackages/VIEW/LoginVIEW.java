@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import DTO.UsuarioPessoaDTO;
-import DAO.UsuarioPessoaDAO;
+import MODEL.UsuarioPessoa;
 
+//Conhece o DAO. Lugar de alterações(Model)
 public class LoginVIEW
 {
 
@@ -19,7 +19,7 @@ public class LoginVIEW
     UsuarioPessoaDAO objUsuarioPessoaDao = new UsuarioPessoaDAO();
 
     //Instância necessária para usar como parâmetro no método de autenticação do usuário.
-    UsuarioPessoaDTO objUsuarioPessoaDto = new UsuarioPessoaDTO();
+    UsuarioPessoa objUsuarioPessoaDto = new UsuarioPessoa();
 
 
     System.out.println("Qual o nome do usuário?");

@@ -1,6 +1,7 @@
-package DTO;
+package MODEL;
 
-public class UsuarioEmpresaDTO 
+//Criação de todos os getters e setters. (Data Transfer Object) Lugar inalterado.
+public class UsuarioEmpresa 
 {
   //Atributos privados porque representam o usuario e senha, ou seja, aumento de segurança além do trabalho com encapsulamento.
   private int id_empresa;

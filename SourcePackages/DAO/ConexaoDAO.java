@@ -6,14 +6,14 @@ import java.sql.Statement;
 
 
 //Classe de conexão para acessar os objetos (Data Access Object), Acesso do objeto a conexão.
-public class DAOConnection 
+public class ConexaoDAO 
 {
   //variável do tipo connection
 
   private Statement sqlmgr = null;
 
 //Método do tipo Connection(envia declarações para o banco de dados) para a abertura do banco de dados.
-  public Connection OpenDatabase()
+  public Connection AbreBd()
   {
     Connection con = null;
 
