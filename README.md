@@ -1,7 +1,21 @@
 # Projeto Start 2024.1 (SustenTrade)
 
-![Aiko](img/Logo.png)
+![SustenTrade](img/Logo.png)
 
 Projeto feito em Java com o objetivo de trazer uma plataforma personalizada que promova a sustentabilidade ambiental através da venda, compra, troca e doação de materiais recicláveis ou reutilizáveis entre pessoas e empresas.
 
 It's a Java project built to bring a personalized platform to promote ambiental sustainability through selling, buying, trading, and donating recyclable or reusable materials between people and companies.
+
+
+
+<h2>Modelo MVC de código</h2>
+
+
+
+![MVC](img/Modelo4CamadasMVC.png)
+
+
+
+Nossa Arquitetura de código.
+
+Our Coding Architecture.
