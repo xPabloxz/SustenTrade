@@ -1,6 +1,6 @@
-package com.start.sustentrade.VIEW;
+package com.start.sustentrade.View;
 
-public class CadastroVIEW 
+public class CadastroView 
 {
   
 }

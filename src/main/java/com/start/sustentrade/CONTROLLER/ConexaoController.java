@@ -1,12 +1,15 @@
-package com.start.sustentrade.DAO;
+package com.start.sustentrade.Controller;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.web.bind.annotation.RestController;
+
 
 //Classe de conexão para acessar os objetos (Data Access Object), Acesso do objeto a conexão.
-public class ConexaoDAO 
+@RestController
+public class ConexaoController 
 {
   //variável do tipo connection
 
@@ -29,23 +32,10 @@ public class ConexaoDAO
     } 
     catch (SQLException error)
     {
-      System.out.println("DAOConnection error!  Message: " + error.getMessage());
+      System.out.println("Erro no AbreBd!  Mensagem: " + error.getMessage());
     }
 
     return con;
-  }
-
-  // Método para mexer no banco de dados retorna o total de registros afetados, caso dê erro gera o -1
-  public int ExecuteQuery(String sql)
-  {
-    try 
-    {
-      return sqlmgr.executeUpdate(sql); //insert/delete/update/create
-    } 
-    catch (Exception error) {
-      System.out.println("Error on conection: ");
-    }
-    return -1;
   }
 
 }

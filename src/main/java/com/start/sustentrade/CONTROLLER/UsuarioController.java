@@ -1,49 +1,32 @@
-package com.start.sustentrade.CONTROLLER;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+package com.start.sustentrade.Controller;
 
-import com.start.sustentrade.DAO.PessoaDAO;
-import com.start.sustentrade.MODEL.PessoaMODEL;
+import java.util.List;
 
-//pesquisa,exclusão, alteração, gravação. Conhece o DAO, Model e VIEW. (Controller)
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.start.sustentrade.Model.UsuarioModel;
+import com.start.sustentrade.Repository.UsuarioRepository;
+
+@RestController
+@RequestMapping(value="/usuarios")
 public class UsuarioController 
-
 {
+  @Autowired
+  private UsuarioRepository repository;
 
-  public void LoginUsuario(String nome_usuario, String senha_usuario)
+
+  @GetMapping
+  public List<UsuarioModel> findAll()
   {
-     //Instância necessária para usar como parâmetro no método de autenticação do usuário.
-     PessoaMODEL objPessoaMODEL = new PessoaMODEL();
-
-    //Instância necessária para pegar o método de autenticação do usuário.
-    PessoaDAO objPessoaDao = new PessoaDAO();
-
-    objPessoaMODEL.setNome_pessoa(nome_usuario);
-    objPessoaMODEL.setSenha_pessoa(senha_usuario); 
-
-    try
-    {
-     
-      ResultSet rsUsuarioDao = objPessoaDao.autenticacaoUsuario(objPessoaMODEL);
-
-      //Caso tenha uma nova linha do sql, ou seja um resultado válido, ele dá a mensagem de seja bem vindo.
-      if(rsUsuarioDao.next())
-      {
-        //Chamar tela que quero abrir
-        System.out.printf("Seja bem vindo(a), %s!!!!! ",objPessoaMODEL.getNome_pessoa());
-      }
-      else
-      {
-        //Enviar mensagem de erro
-        System.out.println("Usuario ou senha inválida!");
-      }
-
-    }
-    catch(SQLException erro)
-    {
-      System.out.println("LoginVIEW Error! Message: " + erro);
-    }
-
+    List<UsuarioModel> result = repository.findAll();
+    return result;
   }
-  
 }
+
+
+
+
+
