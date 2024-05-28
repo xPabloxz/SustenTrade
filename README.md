@@ -8,11 +8,11 @@ It's a Java project built to bring a personalized platform to promote ambiental 
 
 
 
-<h2>Modelo MVC de código</h2>
+<h2>Modelo Rest de código</h2>
 
 
 
-![MVC](img/Modelo4CamadasMVC.png)
+![MVC](img/Modelo_REST.png)
 
 
 
