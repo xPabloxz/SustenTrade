@@ -6,13 +6,9 @@ import java.sql.SQLException;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.start.sustentrade.Model.EmpresaModel;
-import com.start.sustentrade.Model.PessoaModel;
 import com.start.sustentrade.Model.UsuarioModel;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 //Classe do Usuario. Acesso do objeto ao usuário. Os comandos sql acontecem aqui.

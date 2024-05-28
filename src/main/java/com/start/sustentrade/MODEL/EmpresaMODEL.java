@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 //Criação de todos os getters e setters. (Data Transfer Object) Lugar inalterado.
@@ -19,7 +19,7 @@ public class EmpresaModel
   private String cnpj, descricaoEmpresa;
 
   
-  @ManyToMany
+  @OneToOne
   private Long usuarios_id;
 
   public EmpresaModel(){

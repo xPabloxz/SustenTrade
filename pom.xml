@@ -14,7 +14,7 @@
 	<name>sustentrade</name>
 	<description>Spring boot project for the SustenTrade website</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<packaging>jar</packaging>
 	<build>
